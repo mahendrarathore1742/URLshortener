@@ -57,7 +57,7 @@ def generate(request):
             try:
                 validator(request.POST['original']);
             except ValidationError:
-                messages.error(request,'email is not valid');
+                messages.error(request,'URL is not valid');
                 return redirect("/deshbord")
 
             while not generated:
