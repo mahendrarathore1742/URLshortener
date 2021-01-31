@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+
+{% block body %}
+
+
+ 
+
+   <div class="container p-2">
+     <div class="alert alert-success" role="alert">
+  <h4 class="alert-heading">Well done! {{user.username}}</h4>
+  <p>Welcome to our site for Link shortner, well use my site for create shorurl free for everyona</p>
+  <hr>
+  <p class="mb-0">Whenever you need to, be sure to use My site for Creating a short URL.</p>
+  {% if request.user.is_authenticated %}
+  <a href="/deshbord" class="btn btn-primary m-5">Go Deshbord</a>
+
+  {% else %}
+
+  <a href="/account/login" class="btn btn-primary m-5">Login</a>
+
+  <p>if You Dont have accoutn</p>
+  <a href="/account/signup" style="text-decoration: none;">Signup</a>
+
+
+
+
+  {% endif %}
+</div>
+   </div>
+
+    
+
+
+
+
+
+
+
+{% endblock body %}
+{% block js %}
+
+
+
+
+{% endblock js %}

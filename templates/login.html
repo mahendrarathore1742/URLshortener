@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+
+
+{% block body %}
+
+
+    <div class="container-fluid">
+    <div class="row">
+    <div class=" col-sm-6 col-md-5 col-lg-4  mx-auto pt-5 ">
+
+    
+
+<form method="post">
+<h3> Login </h3>
+  
+
+    {% for message in messages %}
+        <p style="display: flex;">  {{ message }}</p>
+        {% endfor %}
+        {% csrf_token %}
+        <div class="mb-3">
+
+        <label for="exampleFormControlInput1" class="form-label">Email address</label>
+        <input type="email" class="form-control"  name="email" maxlength="254" id="id_email" placeholder="name@example.com">
+        </div>
+
+
+        <div class="mb-3">
+        <label for="exampleFormControlInput1" class="form-label">Password</label>
+        <input type="password" class="form-control" name="password" maxlength="128" required="" id="id_password" placeholder="Password">
+        </div>
+    <input type="hidden" name="next"  value="{{request.GET.next}}">
+
+
+<center><button type="submit" class="btn btn-primary">Sign in</button></center>
+    <a href="{% url 'signup' %}" class="card-link" style="text-decoration:none">New Here ? Signup</a>
+    </form>
+
+    
+
+</div>
+</div>
+</div>
+{% endblock body %}

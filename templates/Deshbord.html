@@ -1,0 +1,80 @@
+{% extends 'base.html' %}
+
+{% block body %}
+
+  <div class="container">
+    <div class="row">
+    <div class=" col-sm-8 col-md-8 col-lg-8  mx-auto pt-5 ">
+
+<div class="card" style="width: auto;">
+<center><h3 class="pt-4">URL short </h3></center>
+
+  {% for message in messages %}
+<div class="alert alert-warning alert-dismissible fade show" role="alert">
+  <strong>{{message}}</strong>
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+ {% endfor %}
+
+ <form method='POST' action="{% url "generate" %}">
+  {% csrf_token %}
+ <div class="mb-3 p-5">
+ <center> <label for="exampleFormControlInput1 " class="form-label">enter url</label></center>
+ 
+  <input type="text" class="form-control" name="original"  id="exampleFormControlInput1"  placeholder="Enter the url" required="">
+  <spam style='font-Size:12px'>please enter link with http://</spam>
+</div>
+
+
+ <spam class="mb-3 p-5 pt-0" style='font-Size:12px'>it's optional</spam>
+<div class="input-group p-5 pt-0">
+
+  <span class="input-group-text">http://localhost:8000/</span>
+  <input type="text" aria-label="First name" name="short" class="form-control">
+  
+</div>
+
+
+
+ 
+<div class="form-gurop pb-5 pl-5 pt-0">
+<input type='submit'  class = 'btn btn-primary px-4'  value="Generate">
+</div>
+  
+</div>
+</form>
+
+<center><h3 class="pt-5">Your URLS</h3></center>
+
+<div class="row justify-content-between">
+       <table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Original</th>
+      <th scope="col">ShorUrl</th>
+      <th scope="col">visit</th>
+    </tr>
+  </thead>
+  <tbody>
+  {% for url in urls %}
+    <tr>
+    
+      <td> <a href="{{ url.oirignal_url }}">{{ url.oirignal_url|striptags|truncatechars:25 }}</a></td>
+      <td><a href="http://localhost:8000/{{ url.short_query }}" >http://localhost:8000/{{ url.short_query }}</a></td>
+      <td>{{url.visit}}</td>
+      
+    </tr>
+    {% endfor %}
+   
+  </tbody>
+</table>
+</div>
+
+    </div>
+
+    </div>
+    </div>
+
+{% endblock body %}
